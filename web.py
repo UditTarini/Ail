@@ -10,9 +10,6 @@ import urllib3
 import json
 
 
-# from google import google
-
-
 def launchWeb(site):
     main.ail("launching sir...")
     Asite = '{}'.format(site.replace(" ", "").replace('launch', ''))
@@ -55,13 +52,4 @@ def weather(city_query):
         'The maximum temperature is %0.2f '
         'and the minimum temperature is %0.2f degree celcius'
         % (city, k, x['temp_max'], x['temp_min']))
-# def googleQuery(query):
-#     search=google.search(query)
-#
-#     for result in search:
-#         main.ail(result.description.replace("...","").rsplit('.',3)[0])
-#         break
-# def launchWeb(v1):
-#   if 'facebook' in v1:
-#     main.ail("launching sir...")
-#     webbrowser.open('https://www.facebook.com')
+
