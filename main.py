@@ -93,6 +93,9 @@ if __name__ == "__main__":
         elif 'weather' in voice_note:
             web.weather(voice_note)
 
+        elif 'download' in voice_note:
+            web.downloadYt()
+
         elif "date" in voice_note:
 
             date = now.strftime("%m/%d/%Y")
