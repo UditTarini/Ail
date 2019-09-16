@@ -4,14 +4,19 @@ import webbrowser
 from datetime import datetime
 import pyttsx3
 import speech_recognition as sr
-
+import download_media
 import web
 
-greetings = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey']
-bye = ['exit', 'close', 'goodbye', 'nothing']
-weather = {'tell me the weather in': 'tell me the weather in',
-           'weather in': 'weather in',
-           'what about the weather in': 'what about the weather in'}
+greetings_dict = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey']
+bye_dict = ['exit', 'close', 'goodbye', 'nothing']
+download_video = ['download video','download a video','download a youtube video','download a video from youtube',
+            'download a video for me']
+download_song = ['play song','play a song','play a song','play a song from youtube',
+            'play a song for me']
+date_dict = ['date','current date','can you tell me the date','todays date']
+time_dict = ['time','current time','can you tell me the time','whats the time']
+lock_dict=['lock my device','lock','lock this device']
+thank_you_dict=['thank you','thank you so much','thanks']
 
 global now
 now = datetime.now()
@@ -62,7 +67,7 @@ if __name__ == "__main__":
         voice_note = command().lower()
         print('cmd : {}'.format(voice_note))
 
-        if voice_note in greetings:
+        if voice_note in greetings_dict:
             day_time = int(now.strftime('%H'))
             if day_time < 12:
                 ail('Hello Sir. Good morning')
@@ -90,25 +95,29 @@ if __name__ == "__main__":
         elif 'news for today' in voice_note:
             web.news()
 
-        elif 'weather' in voice_note:
+        elif 'tell me weather in' in voice_note:
             web.weather(voice_note)
 
-        elif 'download' in voice_note:
-            web.downloadYt()
+        elif voice_note in download_video:
+            download_media.initYT_Video()
 
-        elif "date" in voice_note:
+        elif voice_note in download_song:
+            download_media.initYT_Song()
+
+        elif  voice_note in date_dict:
 
             date = now.strftime("%m/%d/%Y")
             ail("today is {}".format(date))
-        elif "time" in voice_note:
+
+        elif  voice_note in time_dict:
             time = now.strftime("%I:%M %p")
             ail("it's {} now".format(time))
-        elif 'lock' in voice_note:
+        elif voice_note in lock_dict :
             ail('Sure sir')
             ctypes.windll.user32.LockWorkStation()
             ail('Your system is locked.')
-        elif "thank you" in voice_note:
+        elif voice_note in thank_you_dict :
             ail("Glad to help...")
-        elif 'bye' in voice_note:
+        elif  voice_note in bye_dict :
             ail('okay Bye...have a good day')
             exit()
