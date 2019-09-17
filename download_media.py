@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import youtube_dl
 import html5lib
 import main
+from pydub import AudioSegment
 
  
 lst = []
@@ -45,15 +46,17 @@ def play_media( num):
         url = dict[int(num)]
         info = pafy.new(url)
         # audio = info.m4astreams[-1]
-        audio = info.getbestaudio(preftype="wav")
-        song_name = info.title+'.wav'
+        audio = info.getbestaudio(preftype="mp3")
+        song_name = info.title+'.mp3'
         audio.download(filepath=song_name, quiet=True)
 
-        song = pyglet.resource.media(song_name)
+        AudioSegment.converter = "path to ffmpeg file"
+        song = AudioSegment.from_mp3("song.mp3")
+        song.export("Taylor Swift Lover.wav", format="wav")
 
-        # player = pyglet.media.Player()
-        # player.queue(song)
+        song = pyglet.resource.media(song_name)
         print("Playing: {0}.".format(dict_names[int(num)]))
+
         song.play()
         pyglet.app.run()
         stop = ''
