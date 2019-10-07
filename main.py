@@ -17,6 +17,7 @@ date_dict = ['date','current date','can you tell me the date','todays date']
 time_dict = ['time','current time','can you tell me the time','whats the time']
 lock_dict=['lock my device','lock','lock this device']
 thank_you_dict=['thank you','thank you so much','thanks']
+translate_dict=['translate','can you translate','can you translate for me','translator','language']
 
 global now
 now = datetime.now()
@@ -105,13 +106,23 @@ if __name__ == "__main__":
             download_media.initYT_Song()
 
         elif  voice_note in date_dict:
-
             date = now.strftime("%m/%d/%Y")
             ail("today is {}".format(date))
 
         elif  voice_note in time_dict:
             time = now.strftime("%I:%M %p")
             ail("it's {} now".format(time))
+
+        elif 'translate' in voice_note:
+            print('string:')
+            ail('enter the text to translate')
+            string=input()
+            print("Translate to:")
+            ail('enter to which language you want to translate\n')
+
+            dest=input()
+            web.translator(string,dest)
+
         elif voice_note in lock_dict :
             ail('Sure sir')
             ctypes.windll.user32.LockWorkStation()
