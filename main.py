@@ -6,6 +6,7 @@ import pyttsx3
 import speech_recognition as sr
 import download_media
 import web
+import alarm
 
 greetings_dict = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey']
 bye_dict = ['exit', 'close', 'goodbye', 'nothing']
@@ -18,7 +19,7 @@ time_dict = ['time','current time','can you tell me the time','whats the time']
 lock_dict=['lock my device','lock','lock this device']
 thank_you_dict=['thank you','thank you so much','thanks']
 translate_dict=['translate','can you translate','can you translate for me','translator','language']
-
+alarm_dict = ['alarm','set alarm','set alarm for me']
 global now
 now = datetime.now()
 
@@ -113,15 +114,19 @@ if __name__ == "__main__":
             time = now.strftime("%I:%M %p")
             ail("it's {} now".format(time))
 
-        elif 'translate' in voice_note:
-            print('string:')
+        elif voice_note in translate_dict:
+            print('>>')
             ail('enter the text to translate')
             string=input()
-            print("Translate to:")
+            print(">>")
             ail('enter to which language you want to translate\n')
-
             dest=input()
             web.translator(string,dest)
+
+        elif voice_note in alarm_dict:
+            ail('sure...')
+            alarm.playAlarm()
+
 
         elif voice_note in lock_dict :
             ail('Sure sir')
