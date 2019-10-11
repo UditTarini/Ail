@@ -6,6 +6,8 @@ import wikipedia
 from pyowm import OWM
 import googletrans
 from googletrans import Translator
+import cv2
+from time import sleep
 from bs4 import BeautifulSoup as soup
 import os
 import vlc
@@ -59,6 +61,27 @@ def weather(city_query):
         'The maximum temperature is %0.2f '
         'and the minimum temperature is %0.2f degree celcius'
         % (city, k, x['temp_max'], x['temp_min']))
+
+def capture():
+    main.ail("opening camera")
+    sleep(1)
+    key = cv2.waitKey(1)
+    webcam = cv2.VideoCapture(0)
+    main.ail('press s to take pictures and press q to quit')
+
+
+    while True:
+        check, frame = webcam.read()
+        cv2.imshow("Capturing", frame)
+        key = cv2.waitKey(1)
+        if key == ord('s'):
+            cv2.imwrite(filename='saved_img.jpg', img=frame)
+            webcam.release()
+            break
+        elif key == ord('q'):
+            webcam.release()
+            cv2.destroyAllWindows()
+            break
 
 def translator(string,dest):
     language = {

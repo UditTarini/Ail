@@ -5,7 +5,7 @@ from datetime import datetime
 import pyttsx3
 import speech_recognition as sr
 import download_media
-import web
+import functions
 import alarm
 
 greetings_dict = ['hey there', 'hello', 'hi', 'Hai', 'hey!', 'hey']
@@ -20,6 +20,7 @@ lock_dict=['lock my device','lock','lock this device']
 thank_you_dict=['thank you','thank you so much','thanks']
 translate_dict=['translate','can you translate','can you translate for me','translator','language']
 alarm_dict = ['alarm','set alarm','set alarm for me']
+cam_dict = ['capture','capture an image','capture an image for me','capture an image for me']
 global now
 now = datetime.now()
 
@@ -86,19 +87,22 @@ if __name__ == "__main__":
             print('explorer C:\\ {}'.format(WithOutSpace.replace('Open', '')))
 
         elif 'launch' in voice_note:
-            web.launchWeb(voice_note)
+            functions.launchWeb(voice_note)
 
         elif "search" in voice_note:
             webbrowser.open("https://www.google.com/search?q={}".format(voice_note.replace("search", "")))
 
         elif 'tell me about' in voice_note:
-            web.wiki(voice_note)
+            functions.wiki(voice_note)
+
+        elif voice_note in cam_dict:
+            functions.capture()
 
         elif 'news for today' in voice_note:
-            web.news()
+            functions.news()
 
         elif 'tell me weather in' in voice_note:
-            web.weather(voice_note)
+            functions.weather(voice_note)
 
         elif voice_note in download_video:
             download_media.initYT_Video()
@@ -121,7 +125,7 @@ if __name__ == "__main__":
             print(">>")
             ail('enter to which language you want to translate\n')
             dest=input()
-            web.translator(string,dest)
+            functions.translator(string, dest)
 
         elif voice_note in alarm_dict:
             ail('sure...')
