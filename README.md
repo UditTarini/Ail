@@ -23,11 +23,11 @@ and converting to text and some other modules to  perform various trask.
 * #### Lock your device (e.g 'Lock my device')
 
 # Getting Started
-- You can download the zip file or clone the repo 
-- Navigate to project file and run `python main.py
+  You can download the zip file or clone the repo <br/> Navigate to project file and run `python main.py`
+  
 
 ## Requirements:
-It uses third party APIs to perform task. Make sure to install these pacakages before executing the code
+  It uses third party APIs to perform task. Make sure to install these pacakages before executing the code
 * ### Specech Recogniton
    `pip install SpeechRecognition`
 * ### Pyglet
