@@ -3,7 +3,7 @@ It is a voice assistant service made with Python 3.5+ It can recognize human spe
 It is buid using pyttsx3 for text-to-speech convertion, speech_recognition for recognizing the voice command 
 and converting to text and some other modules to  perform various trask.
 
-### Ail is capable of:
+### Features:
 
 * #### Opens any directory of windows  (e.g 'Open program files')
 * #### Opens any website (e.g 'Launch github.com')
